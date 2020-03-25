@@ -1,0 +1,18 @@
+{
+  "eslint.validate": ["javascript", "javascriptreact"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.tabSize": 2,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.parameterHints.cycle": true,
+  "editor.parameterHints.enabled": true,
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  "files.autoSave": "onWindowChange",
+  "javascript.implicitProjectConfig.checkJs": true
+}

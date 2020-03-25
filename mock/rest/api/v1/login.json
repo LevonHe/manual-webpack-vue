@@ -1,0 +1,19 @@
+{
+  "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25JZCI6MzY2OTI4MDQ3MDQxMDI0MDAwLCJ0ZW5hbnRJZCI6MzY2OTI4MDQ3MDQxMDI0MDAwLCJleHAiOjE1ODQ3OTQwNzgsInN1YmplY3RUeXBlIjoiVVNFUiIsInN1YmplY3RJZCI6MzY3MzU4MzUxMTc0MTQ0MDA0fQ.09hETejAIjWKftfVVX2h9dcMPOBzKyL4-Vor01FhRu0",
+  "expiresIn": 86400,
+  "user": {
+    "id": "367358351174144004",
+    "tenantId": "366928047041024000",
+    "organizationId": "366928047041024000",
+    "name": "Tenant admin",
+    "organizationName": null,
+    "email": "tenant_admin@fatri.cn",
+    "phoneNumber": null,
+    "metadata": null,
+    "enable": true,
+    "roleId": "367358351174144001",
+    "roleName": "Tenant Admin",
+    "createdAt": 1574491413419,
+    "updatedAt": 1584430222079
+  }
+}
