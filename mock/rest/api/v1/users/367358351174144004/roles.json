@@ -45,13 +45,13 @@
 				"id": "367358351169160000",
 				"name": "Map",
 				"url": "./map",
-				"icon": "s-data",
+				"icon": "map-location",
 				"permissions": []
 			}, {
 				"id": "367358351169170000",
 				"name": "Chart",
 				"url": "./chart",
-				"icon": "s-grid",
+				"icon": "s-data",
 				"permissions": []
 			}, {
 				"id": "367358351169180000",

@@ -29,8 +29,8 @@ Vue.prototype.$languages = Object.keys(messages).map((language) => ({
 }));
 
 let langValue = CookieService.getCookie('lang');
-if (!langValue || !['zh_CN', 'en'].includes(langValue)) {
-  langValue = 'zh_CN';
+if (!langValue || !['zh-CN', 'en'].includes(langValue)) {
+  langValue = 'zh-CN';
 }
 
 const i18n = new VueI18n({

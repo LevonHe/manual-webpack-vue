@@ -1,7 +1,7 @@
 <template>
-  <div class="jarvis-login-bg">
-    <div class="jarvis-login-container">
-      <div class="jarvis-login-icon"></div>
+  <div class="levon-login-bg">
+    <div class="levon-login-container">
+      <div class="levon-login-icon"></div>
       <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm">
         <el-form-item prop="username">
           <el-input
@@ -21,7 +21,7 @@
         </el-form-item>
         <el-form-item>
           <el-button
-            class="jarvis-login-button"
+            class="levon-login-button"
             type="primary"
             @click="submit"
           >{{$t('common.login')}}</el-button>
@@ -136,12 +136,12 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.jarvis-login-bg {
+.levon-login-bg {
   height: 100%;
   width: 100%;
   background: url(../../assets/images/background.png) center no-repeat;
   background-size: cover;
-  .jarvis-login-container {
+  .levon-login-container {
     position: absolute;
     width: 400px;
     height: 420px;
@@ -154,14 +154,14 @@ export default {
     color: #fff;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     box-sizing: border-box;
-    .jarvis-login-icon {
+    .levon-login-icon {
       width: 93px;
       height: 32px;
       margin: 10px auto 20px;
       background: url(../../assets/images/logo_green.png) center no-repeat;
     }
 
-    .jarvis-login-button {
+    .levon-login-button {
       width: 100%;
     }
   }

@@ -9,7 +9,7 @@
     active-text-color="#EA4505"
     @select="handleSelect"
   >
-    <div class="jarvis-logo">
+    <div class="levon-logo">
       <img v-if="!collapsed" src="/statics/logo_white.png" class="logoImg animated fadeInRight" />
       <img v-if="collapsed" src="/statics/logo_white2.png" class="logoImg animated fadeInRight" />
     </div>
@@ -81,7 +81,7 @@ export default {
     width: 200px;
     min-height: 400px;
   }
-  .jarvis-logo {
+  .levon-logo {
     padding: 14px;
     height: 60px;
     background-color: #192129;
