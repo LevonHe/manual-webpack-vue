@@ -118,6 +118,7 @@ export default {
     padding: 0;
     background-color: #ececec;
     box-sizing: border-box;
+    position: relative;
     .levon-container {
       height: 100%;
       padding: 20px;
@@ -127,6 +128,7 @@ export default {
       min-height: 360px;
       background-color: #ececec;
       box-sizing: border-box;
+      position: relative;
     }
   }
   .levon-footer {
