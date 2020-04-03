@@ -3,16 +3,13 @@
   "expiresIn": 86400,
   "user": {
     "id": "367358351174144004",
-    "tenantId": "366928047041024000",
-    "organizationId": "366928047041024000",
-    "name": "Tenant admin",
-    "organizationName": null,
-    "email": "tenant_admin@fatri.cn",
+    "name": "admin",
+    "email": "admin@xxx.cn",
     "phoneNumber": null,
     "metadata": null,
     "enable": true,
     "roleId": "367358351174144001",
-    "roleName": "Tenant Admin",
+    "roleName": "Tenant",
     "createdAt": 1574491413419,
     "updatedAt": 1584430222079
   }

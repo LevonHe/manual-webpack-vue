@@ -24,6 +24,16 @@ function sendJson(req, res, next, file, root) {
 }
 
 module.exports = {
+  proxy: {
+    '/dev': {
+      target: 'http://127.0.0.1:3001/rest',
+      ws: true,
+      changeOrigin: true,
+      pathRewrite: {
+        '^/dev': '',
+      },
+    },
+  },
   historyApiFallback: true,
   progress: true,
   host: '0.0.0.0',
