@@ -3,16 +3,22 @@
     <custom-create-header :header="createHeader.header" :btns="createHeader.btns"></custom-create-header>
     <div class="three-box clearfix">
       <div class="name-box pull-left">
-        <scroll>
+        <scroll
+          ref="wrapper"
+          :data="arrList"
+          :listenScroll="true"
+          :pullup="true"
+          :pulldown="true"
+          :beforeScroll="true"
+          @setScroll="setScroll"
+          @scroll="listenedScroll"
+          @beforeScroll="beforeScroll"
+          @scrollToEnd="scrollToEnd"
+          @pulldown="pulldown"
+        >
           <ul>
-            <li>
-              <text-button text="Dragon 2.5_fbx.fbx"></text-button>
-            </li>
-            <li>
-              <text-button text="Dragon_Baked_Actions_fbx_7.4_binary.fbx"></text-button>
-            </li>
-            <li>
-              <text-button text="teapot-claraio.json"></text-button>
+            <li v-for="(arr, index) in arrList" :key="index">
+              <text-button :text="arr"></text-button>
             </li>
           </ul>
         </scroll>
@@ -39,6 +45,7 @@ export default {
   },
   data() {
     return {
+      scroll: null,
       createHeader: {
         header: {
           title: this.$t('three.title'),
@@ -59,16 +66,33 @@ export default {
           },
         ],
       },
+      arrList: ['Dragon 2.5_fbx.fbx', 'Dragon_Baked_Actions_fbx_7.4_binary.fbx', 'teapot-claraio.json'],
     };
   },
   mounted() {},
-  methods: {},
+  methods: {
+    setScroll(scroll) {
+      this.scroll = scroll;
+    },
+    scrollToEnd() {
+      console.log('上滑到底了');
+    },
+    pulldown() {
+      console.log('下拉到底了');
+    },
+    beforeScroll() {
+      console.log('滚动之前');
+    },
+    listenedScroll(pos) {
+      // console.log(pos);
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
 #three {
   position: relative;
-  height: 100%;
+  height: calc(100% - 93px);
   .three-box {
     height: 100%;
     min-width: 1250px;
