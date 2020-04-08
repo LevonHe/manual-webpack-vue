@@ -24,22 +24,22 @@ const router = new Router({
           component: Overview,
         },
         {
-          path: 'user',
-          name: 'user',
+          path: 'tableEdit',
+          name: 'tableEdit',
           meta: {
-            title: 'menu.User',
+            title: 'menu.tableEdit',
             auth: true,
           },
-          component: () => import(/* webpackChunkName: "user" */ './views/user'),
+          component: () => import(/* webpackChunkName: "tableEdit" */ './views/tableEdit'),
         },
         {
-          path: 'role',
-          name: 'role',
+          path: 'tableValid',
+          name: 'tableValid',
           meta: {
-            title: 'menu.Role',
+            title: 'menu.tableValid',
             auth: true,
           },
-          component: () => import(/* webpackChunkName: "role" */ './views/role'),
+          component: () => import(/* webpackChunkName: "tableValid" */ './views/tableValid'),
         },
         {
           path: 'map',

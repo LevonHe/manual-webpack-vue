@@ -26,21 +26,21 @@
           },
           {
             "id": "367358351169140000",
-            "name": "UserManage",
+            "name": "Table",
             "url": null,
             "icon": "s-custom",
             "permissions": [
               {
                 "id": "367358351169141000",
-                "name": "User",
-                "url": "./user",
+                "name": "TableEdit",
+                "url": "./tableEdit",
                 "icon": null,
                 "permissions": []
               },
               {
                 "id": "367358351169142000",
-                "name": "Role",
-                "url": "./role",
+                "name": "TableValid",
+                "url": "./tableValid",
                 "icon": null,
                 "permissions": []
               }
