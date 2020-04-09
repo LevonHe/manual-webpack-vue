@@ -23,7 +23,7 @@ export default {
       }
     });
     this.$on('on-input-item-remove', (input) => {
-      if (input.validator && input.validator.length) {
+      if (input.validation && input.validation.length) {
         this.inputs.splice(this.inputs.indexOf(input), 1);
       }
     });
