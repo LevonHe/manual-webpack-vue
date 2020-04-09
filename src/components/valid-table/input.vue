@@ -1,6 +1,6 @@
 <template>
   <span class="valid-input-area">
-    <span class="valid-input-item-required">*</span>
+    <span v-if="isRequired" class="valid-input-item-required">*</span>
     <input
       type="text"
       class="valid-input-item"
