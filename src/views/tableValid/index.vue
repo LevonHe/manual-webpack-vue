@@ -27,28 +27,21 @@
         <el-table-column :label="$t('tableValid.type')">
           <template slot-scope="scope">
             <el-select size="medium" v-model="scope.row.type" placeholder="select type.">
-              <el-option
-                v-for="item in typeArr"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
+              <el-option v-for="item in typeArr" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </template>
         </el-table-column>
         <el-table-column align="right">
           <template slot="header">
             <span>
-              <span style="margin-right: 5px;">{{$t('common.operation')}}</span>
-              <el-button type="primary" size="small" @click="handleAdd()">{{$t('common.add')}}</el-button>
+              <span style="margin-right: 5px;">{{ $t('common.operation') }}</span>
+              <el-button type="primary" size="small" @click="handleAdd()">{{ $t('common.add') }}</el-button>
             </span>
           </template>
           <template slot-scope="scope">
-            <el-button
-              type="danger"
-              size="small"
-              @click="handleDelete(scope.row.key)"
-            >{{$t('common.delete')}}</el-button>
+            <el-button type="danger" size="small" @click="handleDelete(scope.row.key)">
+              {{ $t('common.delete') }}
+            </el-button>
           </template>
         </el-table-column>
       </el-table>

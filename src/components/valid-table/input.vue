@@ -4,9 +4,10 @@
     <input
       type="text"
       class="valid-input-item"
-      :class="{ 'input-invalid': validateState === 'error' }"
+      :class="{ 'input-invalid': validateState === 'error', 'input-disabled': disabled }"
       :value="currentValue"
       :placeholder="placeholder"
+      :disabled="disabled"
       @input="handleInput"
       @blur="handleBlur"
       @focus="handleFocus"
@@ -36,6 +37,10 @@ export default {
     placeholder: {
       type: String,
       default: 'Enter value.',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -193,6 +198,13 @@ export default {
     &.input-invalid {
       border-color: #f56c6c !important;
       box-shadow: 0 0 0 2px rgba(234, 69, 14, 0.2);
+    }
+    &.input-disabled {
+      user-select: none;
+      color: #c0c4cc;
+      cursor: not-allowed;
+      border-color: #dcdfe6 !important;
+      background-color: #f5f7fa;
     }
   }
 }
