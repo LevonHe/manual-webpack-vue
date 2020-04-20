@@ -15,12 +15,16 @@ module.exports = {
     login: 'Login',
     logout: 'Logout',
     operation: 'Operation',
+    createdAt: 'Created',
+    updatedAt: 'Updated',
+    description: 'Description',
   },
   menu: {
     Home: 'Overview',
     Table: 'Table Management',
     TableEdit: 'Table Edit',
     TableValid: 'Table Validation',
+    CardList: 'Card List',
     Map: 'Map',
     Chart: 'E-charts',
     Three: 'Three.js',
@@ -75,6 +79,11 @@ module.exports = {
       keyRepeated: 'Key cannot be duplicate.',
       valueRequired: 'Value cannot be blank.',
     },
+  },
+  cardList: {
+    title: 'Card list',
+    helpTip: 'Design of card list.',
+    createCard: 'Create card.',
   },
   errorCode: {
     '000': 'Internet error',

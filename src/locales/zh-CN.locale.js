@@ -15,12 +15,16 @@ module.exports = {
     login: '登录',
     logout: '注销',
     operation: '操作',
+    createdAt: '创建时间',
+    updatedAt: '更新时间',
+    description: '描述',
   },
   menu: {
     Home: '概览',
     Table: '表格管理',
     TableEdit: '表格增删',
     TableValid: '表格校验',
+    CardList: '卡片列表',
     Map: '高德地图',
     Chart: 'E-charts',
     Three: 'Three.js',
@@ -75,6 +79,11 @@ module.exports = {
       keyRepeated: 'key值不能重复',
       valueRequired: 'value值为必填项',
     },
+  },
+  cardList: {
+    title: '卡片列表',
+    helpTip: '卡片类型的列表设计',
+    createCard: '创建卡片',
   },
   errorCode: {
     '000': '网络异常',

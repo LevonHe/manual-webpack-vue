@@ -43,6 +43,13 @@
                 "url": "./tableValid",
                 "icon": null,
                 "permissions": []
+              },
+              {
+                "id": "367358351169143000",
+                "name": "CardList",
+                "url": "./cardList",
+                "icon": null,
+                "permissions": []
               }
             ]
           },

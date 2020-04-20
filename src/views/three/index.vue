@@ -92,11 +92,9 @@ export default {
 <style lang="less" scoped>
 #three {
   position: relative;
-  height: calc(100% - 93px);
+  height: 100%;
   .three-box {
-    height: 100%;
-    min-width: 1250px;
-    min-height: 600px;
+    height: calc(100% - 93px);
     background-color: #fff;
     box-sizing: border-box;
     position: relative;
@@ -104,7 +102,7 @@ export default {
   }
   .name-box {
     width: 300px;
-    height: 100% !important;
+    height: calc(100% - 93px) !important;
     border: 1px solid #e4e4e4;
     border-radius: 3px;
     padding: 10px;

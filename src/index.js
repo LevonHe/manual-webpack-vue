@@ -3,6 +3,7 @@ import i18n from './i18n';
 import App from './App.vue';
 // UI组件
 import ElementUI from 'element-ui';
+import VueClipboard from 'vue-clipboard2';
 // vuex
 import store from './store/index.js';
 // 自定义插件
@@ -17,6 +18,7 @@ import './assets/styles/index.less';
 import './assets/styles/animate.css';
 
 Vue.use(ElementUI);
+Vue.use(VueClipboard);
 
 // 自定义插件
 Vue.use(api);

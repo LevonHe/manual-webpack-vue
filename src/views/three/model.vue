@@ -246,42 +246,44 @@ export default {
       if (name.includes('json')) {
         this.loadJson(`/statics/${name}`);
       }
+      if (name.includes('obj')) {
+        this.loadObj(`/statics/${name}`);
+      }
     },
     loadObj(path) {
-      new MTLLoader().setPath(path).load('machine.mtl', (materials) => {
+      const mtlPath = path.split('.')[0] + '.mtl';
+      const objPath = path.split('.')[0] + '.obj';
+      new MTLLoader().load(mtlPath, (materials) => {
         materials.preload();
-        new OBJLoader()
-          .setMaterials(materials)
-          .setPath(path)
-          .load(
-            'machine.obj',
-            (obj) => {
-              this.scene.add(obj);
-              this.OBJ_READY(true);
-            },
-            (xhr) => {
-              const _this = this;
-              if (xhr.lengthComputable) {
-                const percentComplete = (xhr.loaded / xhr.total) * 100;
-                const percent = Math.round(percentComplete);
-                this.progressBox.innerHTML = percent + '%';
-                if (percent >= 100) {
-                  setTimeout(() => {
-                    _this.progressBox.style.display = 'none';
-                  }, 300);
-                }
-              } else {
-                this.progressBox.innerHTML = 'loading...';
+        new OBJLoader().setMaterials(materials).load(
+          objPath,
+          (obj) => {
+            this.scene.add(obj);
+            this.OBJ_READY(true);
+          },
+          (xhr) => {
+            const _this = this;
+            if (xhr.lengthComputable) {
+              const percentComplete = (xhr.loaded / xhr.total) * 100;
+              const percent = Math.round(percentComplete);
+              this.progressBox.innerHTML = percent + '%';
+              if (percent >= 100) {
                 setTimeout(() => {
                   _this.progressBox.style.display = 'none';
-                }, 2300);
+                }, 300);
               }
-            },
-            (err) => {
-              console.log('---obj load error---');
-              console.log(err);
+            } else {
+              this.progressBox.innerHTML = 'loading...';
+              setTimeout(() => {
+                _this.progressBox.style.display = 'none';
+              }, 2300);
             }
-          );
+          },
+          (err) => {
+            console.log('---obj load error---');
+            console.log(err);
+          }
+        );
       });
     },
     loadFbx(path) {

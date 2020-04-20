@@ -11,6 +11,28 @@ input {
 textarea {
   resize: none;
 }
+a {
+  margin: 0 5px;
+  color: #ea450e;
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  box-sizing: border-box;
+  &:active,
+  &:hover {
+    text-decoration: none;
+    outline: 0;
+  }
+  &:active {
+    color: #c42c02;
+  }
+  &:hover {
+    color: #f76d36;
+  }
+}
+
 .clearfix:before,
 .clearfix:after {
   content: '';

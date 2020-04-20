@@ -42,6 +42,15 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "tableValid" */ './views/tableValid'),
         },
         {
+          path: 'cardList',
+          name: 'cardList',
+          meta: {
+            title: 'menu.cardList',
+            auth: true,
+          },
+          component: () => import(/* webpackChunkName: "cardList" */ './views/cardList'),
+        },
+        {
           path: 'map',
           name: 'map',
           meta: {
