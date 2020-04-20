@@ -34,9 +34,11 @@ export default {
   props: {
     header: {
       type: Object,
+      default: () => {},
     },
     btns: {
       type: Array,
+      default: () => [],
     },
   },
 };

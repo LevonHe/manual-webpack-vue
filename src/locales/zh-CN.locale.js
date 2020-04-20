@@ -85,6 +85,13 @@ module.exports = {
     helpTip: '卡片类型的列表设计',
     createCard: '创建卡片',
   },
+  map: {
+    title: '地图',
+    helpTip: '地图使用',
+    normal: '正常',
+    warn: '预警',
+    error: '报警',
+  },
   errorCode: {
     '000': '网络异常',
   },

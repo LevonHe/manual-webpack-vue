@@ -85,6 +85,13 @@ module.exports = {
     helpTip: 'Design of card list.',
     createCard: 'Create card.',
   },
+  map: {
+    title: 'Map',
+    helpTip: 'Use of map.',
+    normal: 'Normal',
+    warn: 'Warn',
+    error: 'Error',
+  },
   errorCode: {
     '000': 'Internet error',
   },
