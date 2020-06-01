@@ -37,6 +37,9 @@ export default {
       this.execValid(validateInputs, callback);
     },
     execValid(inputs, callback) {
+      if (inputs.length === 0) {
+        return callback(true);
+      }
       return new Promise((resolve) => {
         let valid = true;
         let count = 0;

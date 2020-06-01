@@ -4,12 +4,61 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const merge = require('webpack-merge');
+const autoprefixer = require('autoprefixer');
 const baseConfig = require('./webpack.base.config');
 
 console.log('Vue project is running in ' + process.env.NODE_ENV + ' environment\n');
 
 module.exports = merge(baseConfig, {
   mode: 'production',
+  output: {
+    filename: '[name]_[chunkhash:8].main.js',
+    chunkFilename: '[name]_[chunkhash:8].chunk.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                autoprefixer({
+                  overrideBrowserslist: ['last 2 version', '>1%', 'ios 7'],
+                }),
+              ],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                autoprefixer({
+                  overrideBrowserslist: ['last 2 version', '>1%', 'ios 7'],
+                }),
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({

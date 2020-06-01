@@ -3,6 +3,7 @@ const os = require('os');
 const merge = require('webpack-merge');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const chalk = require('chalk');
+const autoprefixer = require('autoprefixer');
 const baseConfig = require('./webpack.base.config');
 const devServer = require('./devServer');
 
@@ -30,6 +31,54 @@ console.log('Vue project is running in ' + process.env.NODE_ENV + ' environment\
 
 module.exports = merge(baseConfig, {
   mode: 'development',
+  output: {
+    filename: '[name]_[hash:8].main.js',
+    chunkFilename: '[name]_[hash:8].chunk.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                autoprefixer({
+                  overrideBrowserslist: ['last 2 version', '>1%', 'ios 7'],
+                }),
+              ],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                autoprefixer({
+                  overrideBrowserslist: ['last 2 version', '>1%', 'ios 7'],
+                }),
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsWebpackPlugin({

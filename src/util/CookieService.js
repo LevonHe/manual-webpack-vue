@@ -20,7 +20,7 @@ const CookieService = {
   },
   delCookie(key) {
     const data = this.getCookie(key);
-    if (data) {
+    if (!data) {
       return;
     }
     const exp = new Date();

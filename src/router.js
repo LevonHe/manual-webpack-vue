@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Layout from './views/layout/layout';
 import PageNotFound from './views/pageNotFound/pageNotFound';
-import Overview from './views/overview/overview';
 import CookieService from './util/CookieService';
 
 Vue.use(Router);
@@ -12,16 +11,17 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: { name: 'overview' },
+      redirect: { name: 'map' },
       component: Layout,
       children: [
         {
-          path: 'overview',
-          name: 'overview',
+          path: 'map',
+          name: 'map',
           meta: {
+            title: 'menu.Map',
             auth: true,
           },
-          component: Overview,
+          component: () => import(/* webpackChunkName: "map" */ './views/map'),
         },
         {
           path: 'tableEdit',
@@ -49,24 +49,6 @@ const router = new Router({
             auth: true,
           },
           component: () => import(/* webpackChunkName: "cardList" */ './views/cardList'),
-        },
-        {
-          path: 'map',
-          name: 'map',
-          meta: {
-            title: 'menu.Map',
-            auth: true,
-          },
-          component: () => import(/* webpackChunkName: "map" */ './views/map'),
-        },
-        {
-          path: 'chart',
-          name: 'chart',
-          meta: {
-            auth: true,
-            title: 'menu.Chart',
-          },
-          component: () => import(/* webpackChunkName: "chart" */ './views/chart'),
         },
         {
           path: 'three',

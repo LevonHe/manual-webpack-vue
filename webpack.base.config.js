@@ -1,8 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const autoprefixer = require('autoprefixer');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -13,9 +11,7 @@ function resolve(dir) {
 module.exports = {
   entry: ['@babel/polyfill', './src/index.js'],
   output: {
-    path: path.join(__dirname, 'dist/fatri'),
-    filename: '[name]_[hash:8].main.js',
-    chunkFilename: '[name]_[hash:8].chunk.js',
+    path: path.join(__dirname, 'dist'),
     publicPath: '/',
   },
   resolve: {
@@ -46,46 +42,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.css$/,
-        use: [
-          process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [
-                autoprefixer({
-                  overrideBrowserslist: ['last 2 version', '>1%', 'ios 7'],
-                }),
-              ],
-            },
-          },
-        ],
-      },
-      {
-        test: /\.less$/,
-        use: [
-          process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-          {
-            loader: 'less-loader',
-            options: {
-              javascriptEnabled: true,
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [
-                autoprefixer({
-                  overrideBrowserslist: ['last 2 version', '>1%', 'ios 7'],
-                }),
-              ],
-            },
-          },
-        ],
-      },
-      {
         test: /\.(png|jpg|gif|jpeg|svg)$/,
         use: [
           {
@@ -103,7 +59,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'font/[name]_[hash:8].[ext]',
+              name: 'fonts/[name]_[hash:8].[ext]',
             },
           },
         ],
@@ -135,7 +91,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: path.join(__dirname, 'public/statics'),
-        to: path.join(__dirname, 'dist/fatri/statics'),
+        to: path.join(__dirname, 'dist/statics'),
         ignore: ['.*'],
       },
     ]),

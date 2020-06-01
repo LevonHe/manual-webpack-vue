@@ -18,10 +18,10 @@
         "icon": null,
         "permissions": [
           {
-            "id": "367358351169110000",
-            "name": "Home",
-            "url": "./overview",
-            "icon": "s-home",
+            "id": "367358351169160000",
+            "name": "Map",
+            "url": "./map",
+            "icon": "map-location",
             "permissions": []
           },
           {
@@ -52,20 +52,6 @@
                 "permissions": []
               }
             ]
-          },
-          {
-            "id": "367358351169160000",
-            "name": "Map",
-            "url": "./map",
-            "icon": "map-location",
-            "permissions": []
-          },
-          {
-            "id": "367358351169170000",
-            "name": "Chart",
-            "url": "./chart",
-            "icon": "s-data",
-            "permissions": []
           },
           {
             "id": "367358351169180000",
