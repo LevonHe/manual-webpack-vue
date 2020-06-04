@@ -28,6 +28,7 @@ module.exports = {
     Map: 'Map',
     Chart: 'E-charts',
     Three: 'Three.js',
+    Canvas: 'Canvas',
   },
   user: {
     user: 'User',

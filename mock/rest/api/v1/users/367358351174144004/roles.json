@@ -59,6 +59,13 @@
             "url": "./three",
             "icon": "menu",
             "permissions": []
+          },
+          {
+            "id": "367358351169190000",
+            "name": "Canvas",
+            "url": "./canvas",
+            "icon": "menu",
+            "permissions": []
           }
         ]
       },

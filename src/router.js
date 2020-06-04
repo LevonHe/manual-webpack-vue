@@ -59,6 +59,15 @@ const router = new Router({
           },
           component: () => import(/* webpackChunkName: "three" */ './views/three'),
         },
+        {
+          path: 'canvas',
+          name: 'canvas',
+          meta: {
+            auth: true,
+            title: 'menu.Canvas',
+          },
+          component: () => import(/* webpackChunkName: "canvas" */ './views/canvas'),
+        },
       ],
     },
     {

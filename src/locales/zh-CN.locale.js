@@ -28,6 +28,7 @@ module.exports = {
     Map: '高德地图',
     Chart: 'E-charts',
     Three: 'Three.js',
+    Canvas: '画布',
   },
   user: {
     user: '用户',
