@@ -5,55 +5,45 @@
       <el-table :data="source">
         <el-table-column :label="$t('tableEdit.name')">
           <template slot-scope="scope">
-            <span v-if="!scope.row.isEdit">{{scope.row.name}}</span>
+            <span v-if="!scope.row.isEdit">{{ scope.row.name }}</span>
             <el-input v-else v-model="scope.row.name" placeholder="Enter name."></el-input>
           </template>
         </el-table-column>
         <el-table-column :label="$t('tableEdit.id')">
           <template slot-scope="scope">
-            <span>{{scope.row.id}}</span>
+            <span>{{ scope.row.id }}</span>
           </template>
         </el-table-column>
         <el-table-column :label="$t('tableEdit.address')">
           <template slot-scope="scope">
-            <span v-if="!scope.row.isEdit">{{scope.row.address}}</span>
+            <span v-if="!scope.row.isEdit">{{ scope.row.address }}</span>
             <el-input v-else v-model="scope.row.address" placeholder="Enter address."></el-input>
           </template>
         </el-table-column>
         <el-table-column :label="$t('tableEdit.createdAt')">
           <template slot-scope="scope">
-            <span>{{scope.row.createdAt || '--'}}</span>
+            <span>{{ scope.row.createdAt || '--' }}</span>
           </template>
         </el-table-column>
         <el-table-column :label="$t('tableEdit.updatedAt')">
           <template slot-scope="scope">
-            <span>{{scope.row.updatedAt || '--'}}</span>
+            <span>{{ scope.row.updatedAt || '--' }}</span>
           </template>
         </el-table-column>
         <el-table-column :label="$t('common.operation')">
           <template slot-scope="scope">
-            <el-button
-              v-if="!scope.row.isEdit"
-              size="mini"
-              @click="handleEdit(scope.row.id)"
-            >{{$t('common.edit')}}</el-button>
-            <el-button
-              v-if="!scope.row.isEdit"
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.row.id)"
-            >{{$t('common.delete')}}</el-button>
-            <el-button
-              v-if="scope.row.isEdit"
-              size="mini"
-              type="primary"
-              @click="handleSave(scope.row)"
-            >{{$t('common.save')}}</el-button>
-            <el-button
-              v-if="scope.row.isEdit"
-              size="mini"
-              @click="handleCancel(scope.row.id)"
-            >{{$t('common.cancel')}}</el-button>
+            <el-button v-if="!scope.row.isEdit" size="mini" @click="handleEdit(scope.row.id)">{{
+              $t('common.edit')
+            }}</el-button>
+            <el-button v-if="!scope.row.isEdit" size="mini" type="danger" @click="handleDelete(scope.row.id)">{{
+              $t('common.delete')
+            }}</el-button>
+            <el-button v-if="scope.row.isEdit" size="mini" type="primary" @click="handleSave(scope.row)">{{
+              $t('common.save')
+            }}</el-button>
+            <el-button v-if="scope.row.isEdit" size="mini" @click="handleCancel(scope.row.id)">{{
+              $t('common.cancel')
+            }}</el-button>
           </template>
         </el-table-column>
       </el-table>

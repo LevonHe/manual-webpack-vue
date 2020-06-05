@@ -31,7 +31,8 @@
             @click="btn.click(item)"
             class="levon-btn"
             :class="{ 'btn-delete-forbid': btn.disabled }"
-          >{{ btn.text }}</a>
+            >{{ btn.text }}</a
+          >
         </template>
         <template v-slot:form>
           <el-row class="status-card-row" :gutter="10">

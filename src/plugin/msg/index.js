@@ -12,13 +12,13 @@ export default {
       error(error) {
         let message = '';
         if (error && error.errorCode) {
-          message = Vue.prototype.$t('errorCode.' + error.errorCode) || Vue.prototype.$t('errorCode.000');
+          message = Vue.prototype.$t(`errorCode.${error.errorCode}`) || Vue.prototype.$t('errorCode.000');
         }
         if (!message && error && error.errorMessage) {
           message = error.errorMessage;
         }
         if (!message && error && error.status) {
-          message = Vue.prototype.$t('errorCode.' + error.status) || Vue.prototype.$t('errorCode.000');
+          message = Vue.prototype.$t(`errorCode.${error.status}`) || Vue.prototype.$t('errorCode.000');
         }
         if (!message && error && error.message) {
           message = error.message;

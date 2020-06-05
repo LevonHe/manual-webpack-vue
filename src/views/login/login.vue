@@ -20,11 +20,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button
-            class="levon-login-button"
-            type="primary"
-            @click="submit"
-          >{{$t('common.login')}}</el-button>
+          <el-button class="levon-login-button" type="primary" @click="submit">{{ $t('common.login') }}</el-button>
         </el-form-item>
       </el-form>
     </div>

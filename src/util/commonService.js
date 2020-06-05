@@ -12,15 +12,15 @@ export const formatRequestParams = (params) => {
 };
 // 获取url参数
 export const getUrlParam = (name) => {
-  let url = location.href;
-  let temp = url.split('?');
-  let paramStr = temp[1];
-  let param = paramStr.split('&');
-  let obj = {};
+  const url = window.location.href;
+  const temp = url.split('?');
+  const paramStr = temp[1];
+  const param = paramStr.split('&');
+  const obj = {};
   for (let i = 0; i < param.length; i += 1) {
-    let item = param[i].split('=');
-    let key = item[0];
-    let value = item[1];
+    const item = param[i].split('=');
+    const key = item[0];
+    const value = item[1];
     obj[key] = value;
   }
   return obj[name];
@@ -36,12 +36,12 @@ export const getPageScrollTop = () => {
 // 获取某个dom元素的offset和scroll距离
 export const getRootOffsetAndScroll = (el, pname = 'body') => {
   // 对于要计算偏移和滚动长度的父元素，要设置相对定位
-  let offsetLeft = el.offsetLeft;
-  let offsetTop = el.offsetTop;
-  let scrollLeft = el.scrollLeft;
-  let scrollTop = el.scrollTop;
+  let { offsetLeft } = el;
+  let { offsetTop } = el;
+  let { scrollLeft } = el;
+  let { scrollTop } = el;
   if (el.offsetParent && el.offsetParent.tagName !== pname) {
-    let p = getRootOffsetAndScroll(el.offsetParent, pname);
+    const p = getRootOffsetAndScroll(el.offsetParent, pname);
     offsetLeft += p[0];
     offsetTop += p[1];
     scrollLeft += p[2];
@@ -93,20 +93,19 @@ export const subText = (str, length) => {
     return '';
   }
   if (str.length > length) {
-    return str.substr(0, length) + '...';
-  } else {
-    return str;
+    return `${str.substr(0, length)}...`;
   }
+  return str;
 };
 
 // base64转file
 export const base64ToFile = (base64, filename) => {
-  let arr = base64.split(',');
-  let mime = arr[0].match(/:(.*?);/)[1];
-  let suffix = mime.split('/')[1];
-  let bstr = atob(arr[1]);
+  const arr = base64.split(',');
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const suffix = mime.split('/')[1];
+  const bstr = atob(arr[1]);
   let n = bstr.length;
-  let u8arr = new Uint8Array(n);
+  const u8arr = new Uint8Array(n);
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }
@@ -114,11 +113,11 @@ export const base64ToFile = (base64, filename) => {
 };
 // base64转blob
 export const base64ToBlob = (base64) => {
-  let arr = base64.split(',');
-  let mime = arr[0].match(/:(.*?);/)[1];
-  let bstr = atob(arr[1]);
+  const arr = base64.split(',');
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const bstr = atob(arr[1]);
   let n = bstr.length;
-  let u8arr = new Uint8Array(n);
+  const u8arr = new Uint8Array(n);
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }
@@ -134,9 +133,9 @@ export const blobToFile = (blob, filename) => {
 
 // file转base64
 export const fileToBase64 = (file) => {
-  let reader = new FileReader();
+  const reader = new FileReader();
   reader.readAsDataURL(file);
-  reader.onload = function(e) {
+  reader.onload = function onload(e) {
     return e.target.result;
   };
 };
@@ -148,10 +147,10 @@ export const detectDeviceType = () => {
 
 // 判断手机类型
 export const getOSType = () => {
-  let u = navigator.userAgent;
+  const u = navigator.userAgent;
   // let app = navigator.appVersion;
-  let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
-  let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+  const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+  const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
   if (isIOS) {
     return 0;
   }
@@ -163,8 +162,8 @@ export const getOSType = () => {
 
 // 判断数据类型
 export const type = (target) => {
-  let ret = typeof target;
-  let obj = {
+  const ret = typeof target;
+  const obj = {
     '[object Array]': 'array',
     '[object Object]': 'object',
     '[object Number]': 'number-object',
@@ -174,12 +173,12 @@ export const type = (target) => {
 
   if (target === null) {
     return 'null';
-  } else if (ret === 'object') {
-    let str = Object.prototype.toString.call(target);
-    return obj[str];
-  } else {
-    return ret;
   }
+  if (ret === 'object') {
+    const str = Object.prototype.toString.call(target);
+    return obj[str];
+  }
+  return ret;
 };
 // 生成指定范围随机数
 export const randomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -218,7 +217,7 @@ export const escapeHTML = (str) => {
 };
 // 加
 export const add = (num1, num2) => {
-  let n1, n2, m;
+  let n1, n2;
   try {
     n1 = num1.toString().split('.')[1].length;
   } catch (error) {
@@ -229,12 +228,12 @@ export const add = (num1, num2) => {
   } catch (error) {
     n2 = 0;
   }
-  m = Math.pow(10, Math.max(n1, n2));
+  const m = Math.pow(10, Math.max(n1, n2));
   return (num1 * m + num2 * m) / m;
 };
 // 减
 export const sub = (num1, num2) => {
-  let n1, n2, m, n;
+  let n1, n2;
   try {
     n1 = num1.toString().split('.')[1].length;
   } catch (error) {
@@ -245,27 +244,31 @@ export const sub = (num1, num2) => {
   } catch (error) {
     n2 = 0;
   }
-  m = Math.pow(10, Math.max(n1, n2));
-  n = n1 >= n2 ? n1 : n2;
+  const m = Math.pow(10, Math.max(n1, n2));
+  const n = n1 >= n2 ? n1 : n2;
   return Number(((num1 * m - num2 * m) / m).toFixed(n));
 };
 // 乘
 export const multiplication = (num1, num2) => {
-  let m = 0,
-    n1 = num1.toString(),
-    n2 = num2.toString();
+  let m = 0;
+  const n1 = num1.toString();
+  const n2 = num2.toString();
   try {
     m += n1.split('.')[1].length;
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error);
+  }
   try {
     m += n2.split('.')[1].length;
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error);
+  }
 
   return (Number(n1.replace('.', '')) * Number(n2.replace('.', ''))) / Math.pow(10, m);
 };
 // 除
 export const division = (num1, num2) => {
-  let r1, r2, n1, n2;
+  let n1, n2;
   try {
     n1 = num1.toString().split('.')[1].length;
   } catch (error) {
@@ -276,7 +279,7 @@ export const division = (num1, num2) => {
   } catch (error) {
     n2 = 0;
   }
-  r1 = Number(num1.toString().replace('.', ''));
-  r2 = Number(num2.toString().replace('.', ''));
+  const r1 = Number(num1.toString().replace('.', ''));
+  const r2 = Number(num2.toString().replace('.', ''));
   return (r1 / r2) * Math.pow(10, n2 - n1);
 };

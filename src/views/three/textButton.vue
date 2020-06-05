@@ -1,9 +1,11 @@
 <template>
   <div
     class="text-button"
-    :class="{'btn-delete-forbid': modelName === text || !objReady}"
+    :class="{ 'btn-delete-forbid': modelName === text || !objReady }"
     @click="handleModelNameChange"
-  >{{text}}</div>
+  >
+    {{ text }}
+  </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex';

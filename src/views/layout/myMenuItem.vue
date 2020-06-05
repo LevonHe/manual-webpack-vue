@@ -1,7 +1,7 @@
 <template>
   <el-menu-item :index="menu.url || idx">
     <i v-if="menu.icon" :class="`el-icon-${menu.icon}`"></i>
-    <span slot="title">{{$t('menu.' + menu.name)}}</span>
+    <span slot="title">{{ $t('menu.' + menu.name) }}</span>
   </el-menu-item>
 </template>
 <script>

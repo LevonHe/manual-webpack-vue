@@ -1,7 +1,7 @@
 <template>
   <div class="custom-create-header clearfix">
     <div class="custom-create-left pull-left">
-      <span class="custom-create-title">{{header.title}}</span>
+      <span class="custom-create-title">{{ header.title }}</span>
       <template v-if="header.helpTip">
         <el-tooltip
           effect="dark"
@@ -16,13 +16,9 @@
     <div class="custom-create-right pull-right">
       <template v-if="btns.length > 0">
         <template v-for="btn in btns">
-          <el-button
-            class="custom-create-btn"
-            :key="btn.id"
-            :icon="btn.icon"
-            type="primary"
-            @click="btn.click"
-          >{{btn.text}}</el-button>
+          <el-button class="custom-create-btn" :key="btn.id" :icon="btn.icon" type="primary" @click="btn.click">{{
+            btn.text
+          }}</el-button>
         </template>
       </template>
     </div>
