@@ -5,7 +5,7 @@ import CookieService from '@/util/CookieService';
 Vue.use(VueI18n);
 
 function loadLocaleMessages() {
-  const locales = require.context('./locales', true, /\.locale\.js$/i);
+  const locales = require.context('./locales', true, /\.locale\.js/i);
   const messages = {};
   locales.keys().forEach((key) => {
     const matched = key.match(/([A-Za-z0-9-_]+)\.locale\./i);
@@ -13,8 +13,8 @@ function loadLocaleMessages() {
       const locale = matched[1];
       const localeElementUI = require(`element-ui/lib/locale/lang/${locales(key)._element}`);
       messages[locale] = {
-        ...locales(key), // 业务中的国际化配置
-        ...(localeElementUI ? localeElementUI.default : {}), // 组件中的国际化配置
+        ...locales(key),
+        ...(localeElementUI ? localeElementUI.default : {}),
       };
     }
   });
@@ -28,7 +28,7 @@ Vue.prototype.$languages = Object.keys(messages).map((language) => ({
   value: language,
 }));
 
-let langValue = CookieService.getCookie('lang');
+let langValue = CookieService.getCookie('Business-Lang');
 if (!langValue || !['zh-CN', 'en'].includes(langValue)) {
   langValue = 'zh-CN';
 }

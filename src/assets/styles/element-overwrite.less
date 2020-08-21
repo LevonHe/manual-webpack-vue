@@ -1,0 +1,88 @@
+.el-menu--collapse .el-submenu__title span {
+  display: none;
+}
+.el-menu--collapse .el-submenu__title .el-submenu__icon-arrow {
+  display: none;
+}
+
+.el-table {
+  .cell {
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.el-tooltip__popper {
+  max-width: 500px;
+}
+
+.el-card {
+  &.is-always-shadow {
+    box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
+  }
+  &.is-hover-shadow {
+    &:hover {
+      box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
+    }
+  }
+}
+
+.el-menu--horizontal {
+  border-bottom: none !important;
+}
+
+.el-tabs__item:focus.is-active.is-focus:not(:active) {
+  box-shadow: none !important;
+}
+
+.el-menu--popup {
+  .el-menu-item {
+    height: 36px;
+    line-height: 36px;
+  }
+  .el-submenu__title {
+    height: 36px;
+    line-height: 36px;
+  }
+}
+
+.el-drawer__wrapper {
+  &:focus {
+    outline: none;
+  }
+  .el-drawer__body:focus {
+    outline: none !important;
+  }
+}
+
+.el-submenu__icon-arrow {
+  right: 10px !important;
+}
+
+.fade-transverse-leave-active,
+.fade-transverse-enter-active {
+  transition: all 0.5s;
+}
+.fade-transverse-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.fade-transverse-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.fade-scale-leave-active,
+.fade-scale-enter-active {
+  transition: all 0.3s;
+}
+.fade-scale-enter {
+  opacity: 0;
+  transform: scale(1.2);
+}
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}

@@ -1,15 +1,17 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
-import cms from './modules/cms';
 
-const isDev = process.env.NODE_ENV === 'development';
+import system from './modules/system';
+import business from './modules/business';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  strict: isDev,
+  strict: process.env.NODE_ENV === 'development',
   modules: {
-    cms,
+    system,
+    business,
   },
   plugins: [createPersistedState()],
 });

@@ -28,6 +28,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    // 是否开启纵向滚动
+    scrollY: {
+      type: Boolean,
+      default: true,
+    },
     // 是否派发滚动事件
     listenScroll: {
       type: Boolean,
@@ -58,6 +63,16 @@ export default {
       type: Number,
       default: 20,
     },
+    // 滚动条fade
+    scrollbarFade: {
+      type: Boolean,
+      default: true,
+    },
+    // 滚动条交互事件
+    scrollbarInteractive: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -87,11 +102,13 @@ export default {
       this.scroll = new BScroll(this.$refs.wrapper, {
         mouseWheel: true,
         scrollbar: {
-          fade: true,
+          fade: this.scrollbarFade,
+          interactive: this.scrollbarInteractive,
         },
         probeType: this.probeType,
         click: this.click,
         scrollX: this.scrollX,
+        scrollY: this.scrollY,
       });
 
       this.$emit('setScroll', this.scroll);
@@ -144,11 +161,11 @@ export default {
 </script>
 <style lang="less" scoped>
 .wrapper {
-  width: calc(100% - 20px);
-  height: calc(100% - 20px);
+  width: 100%;
+  height: 100%;
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 0;
+  left: 0;
   overflow: hidden;
 }
 </style>

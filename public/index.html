@@ -2,16 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Manual Vue Web</title>
-    <script
-      type="text/javascript"
-      src="https://webapi.amap.com/maps?v=1.4.15&key=5d050f38fb7f7bd92220e2d0eeed8f27"
-    ></script>
+    <style>
+      html,
+      body,
+      #app {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+      }
+      #fe-main__loading {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        background-color: #303133;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        user-select: none;
+        justify-content: center;
+        align-items: center;
+      }
+      #fe-main__loading .fe-main__loading-img {
+        height: 32px;
+        width: 32px;
+        margin-bottom: 20px;
+      }
+    </style>
   </head>
 
   <body>
     <div id="app"></div>
+    <div id="fe-main__loading">
+      <img class="fe-main__loading-img" src="/images/loading-spin.svg" alt="loading" />
+    </div>
   </body>
 </html>

@@ -64,7 +64,7 @@ export default {
   display: inline-block;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 4px;
   margin: 10px;
   box-sizing: border-box;
   position: relative;
@@ -138,6 +138,27 @@ export default {
   }
   &.Error::before {
     background-color: #ff5b5b;
+  }
+  a {
+    margin: 0 5px;
+    color: #ea450e;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    box-sizing: border-box;
+    &:active,
+    &:hover {
+      text-decoration: none;
+      outline: 0;
+    }
+    &:active {
+      color: #c42c02;
+    }
+    &:hover {
+      color: #f76d36;
+    }
   }
 }
 </style>

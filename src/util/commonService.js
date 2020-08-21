@@ -1,5 +1,7 @@
-// 过滤请求参数
-export const formatRequestParams = (params) => {
+/**
+ * @param {*} params: 请求参数对象
+ */
+export const formatParams = (params) => {
   if (!params) {
     return {};
   }
@@ -10,276 +12,133 @@ export const formatRequestParams = (params) => {
   });
   return params;
 };
-// 获取url参数
-export const getUrlParam = (name) => {
-  const url = window.location.href;
-  const temp = url.split('?');
-  const paramStr = temp[1];
-  const param = paramStr.split('&');
-  const obj = {};
-  for (let i = 0; i < param.length; i += 1) {
-    const item = param[i].split('=');
-    const key = item[0];
-    const value = item[1];
-    obj[key] = value;
-  }
-  return obj[name];
-};
-// 获取页面横向滚动条未知
-export const getPageScrollLeft = () => {
-  return document.documentElement.scrollLeft || document.body.scrollLeft || window.pageXOffset;
-};
-// 获取页面纵向滚动条未知
-export const getPageScrollTop = () => {
-  return document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
-};
-// 获取某个dom元素的offset和scroll距离
-export const getRootOffsetAndScroll = (el, pname = 'body') => {
-  // 对于要计算偏移和滚动长度的父元素，要设置相对定位
-  let { offsetLeft } = el;
-  let { offsetTop } = el;
-  let { scrollLeft } = el;
-  let { scrollTop } = el;
-  if (el.offsetParent && el.offsetParent.tagName !== pname) {
-    const p = getRootOffsetAndScroll(el.offsetParent, pname);
-    offsetLeft += p[0];
-    offsetTop += p[1];
-    scrollLeft += p[2];
-    scrollTop += p[3];
-  }
-  return [offsetLeft, offsetTop, scrollLeft, scrollTop];
-};
-// 开启全屏
-export const launchFullScreen = (element) => {
-  if (element.requestFullscreen) {
-    element.requestFullscreen();
-  } else if (element.mozRequestFullScreen) {
-    element.mozRequestFullScreen();
-  } else if (element.msRequestFullscreen) {
-    element.msRequestFullscreen();
-  } else if (element.webkitRequestFullscreen) {
-    element.webkitRequestFullScreen();
-  }
-};
-// 关闭全屏
-export const exitFullscreen = () => {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.msExitFullscreen) {
-    document.msExitFullscreen();
-  } else if (document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
-  } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  }
-};
-// 返回顶部
-export const scrollToTop = () => {
-  const top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
-  if (top > 0) {
-    window.requestAnimationFrame(scrollToTop);
-    window.scrollTo(0, top - top / 8);
-  }
-};
 
-// 金额格式化，三位加逗号
-export const formatMoney = (num) => {
-  num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
-
-// 截取字符串，加省略号
-export const subText = (str, length) => {
-  if (str.length === 0) {
+/**
+ * @param {*} num: 数字
+ * @param {*} n: 保留位数
+ */
+export const getFloat = (num, n) => {
+  let result = parseFloat(num);
+  if (isNaN(result)) {
     return '';
   }
-  if (str.length > length) {
-    return `${str.substr(0, length)}...`;
+  let total = n ? parseInt(n) : 0;
+  if (total <= 0) {
+    return Math.round(result) + '';
   }
-  return str;
+  result = Math.round(result * Math.pow(10, n)) / Math.pow(10, n);
+  let sX = result.toString();
+  let posDecimal = sX.indexOf('.'); // 小数点的索引值
+  // 整数
+  if (posDecimal < 0) {
+    posDecimal = sX.length;
+    sX += '.';
+  }
+  // 当数字的长度小于小数点索引加n时，补0
+  while (sX.length <= posDecimal + total) {
+    sX += '0';
+  }
+  return sX + '';
+};
+// uuid
+export const getUUID = () => {
+  const s = [];
+  const hexDigits = '01234567890abcdef';
+  for (let i = 0; i < 36; i += 1) {
+    s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+  }
+  s[14] = '4';
+  s[19] = hexDigits.substr((s[19] && 0x3) || 0x8, 1);
+  s[8] = '-';
+  s[13] = '-';
+  s[18] = '-';
+  s[23] = '-';
+
+  const uuid = s.join('');
+  return uuid;
 };
 
-// base64转file
-export const base64ToFile = (base64, filename) => {
-  const arr = base64.split(',');
-  const mime = arr[0].match(/:(.*?);/)[1];
-  const suffix = mime.split('/')[1];
-  const bstr = atob(arr[1]);
-  let n = bstr.length;
-  const u8arr = new Uint8Array(n);
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n);
-  }
-  return new File([u8arr], `${filename}.${suffix}`, { type: mime });
-};
-// base64转blob
-export const base64ToBlob = (base64) => {
-  const arr = base64.split(',');
-  const mime = arr[0].match(/:(.*?);/)[1];
-  const bstr = atob(arr[1]);
-  let n = bstr.length;
-  const u8arr = new Uint8Array(n);
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n);
-  }
-  return new Blob([u8arr], { type: mime });
-};
-
-// blob转file
-export const blobToFile = (blob, filename) => {
-  blob.lastModifiedDate = new Date();
-  blob.name = filename;
-  return blob;
-};
-
-// file转base64
-export const fileToBase64 = (file) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = function onload(e) {
-    return e.target.result;
-  };
-};
-
-// pc or 移动设备
-export const detectDeviceType = () => {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'Mobile' : 'PC';
-};
-
-// 判断手机类型
-export const getOSType = () => {
-  const u = navigator.userAgent;
-  // let app = navigator.appVersion;
-  const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
-  const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-  if (isIOS) {
-    return 0;
-  }
-  if (isAndroid) {
-    return 1;
-  }
-  return 2;
-};
-
-// 判断数据类型
-export const type = (target) => {
-  const ret = typeof target;
-  const obj = {
-    '[object Array]': 'array',
-    '[object Object]': 'object',
-    '[object Number]': 'number-object',
-    '[object Boolean]': 'boolean-object',
-    '[object String]': 'string-object',
-  };
-
-  if (target === null) {
-    return 'null';
-  }
-  if (ret === 'object') {
-    const str = Object.prototype.toString.call(target);
-    return obj[str];
-  }
-  return ret;
-};
-// 生成指定范围随机数
-export const randomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-// 数组中某个元素的出现次数
-export const eleOccurCount = (arr, el) => {
-  return arr.reduce((a, v) => (v === el ? a + 1 : a + 0), 0);
-};
-// 去除空格
+// 解码JWTtoken
 /**
- * @param {string} str
- * @param {number} type 1-所有空格 2-前后空格 3-前空格 4-后空格
+ * @param {*} token: 需要被解码的token
  */
-export const trim = (str, type = 1) => {
-  if (type && type !== 1 && type !== 2 && type !== 3 && type !== 4) {
-    return;
+export const decodeToken = (token) => {
+  if (!token) {
+    return {};
   }
-  switch (type) {
-    case 1:
-      return str.replace(/\s/g, '');
-    case 2:
-      return str.replace(/(^\s)|(\s*$)/g, '');
-    case 3:
-      return str.replace(/(^\s)/g, '');
-    case 4:
-      return str.replace(/(\s$)/g, '');
-    default:
-      return str;
+  if (token.indexOf('.') === -1) {
+    return {};
   }
+  const objStr = decodeURIComponent(escape(window.atob(token.split('.')[1])));
+  const newStr = objStr
+    .replace(/"subjectId":(\d+)/, '"subjectId":"$1"')
+    .replace(/"organizationId":(\d+)/, '"organizationId":"$1"')
+    .replace(/"tenantId":(\d+)/, '"tenantId":"$1"');
+  return JSON.parse(newStr);
 };
-// html转义
-export const escapeHTML = (str) => {
-  str.replace(
-    /[&<>'"]/g,
-    (tag) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-  );
-};
-// 加
-export const add = (num1, num2) => {
-  let n1, n2;
-  try {
-    n1 = num1.toString().split('.')[1].length;
-  } catch (error) {
-    n1 = 0;
+
+// getBrowserType
+function getVersion(versionStr) {
+  const versionArr = versionStr.split('.');
+  let version;
+  if (versionArr.length === 1) {
+    version = versionArr[0];
+  } else if (versionArr.length > 1) {
+    version = versionArr[0] + '.' + versionArr[1];
   }
-  try {
-    n2 = num2.toString().split('.')[1].length;
-  } catch (error) {
-    n2 = 0;
+  return parseFloat(version);
+}
+export const getBrowserType = () => {
+  const userAgent = navigator.userAgent;
+  if (userAgent.indexOf('Firefox') > -1) {
+    const versionStr = userAgent.split('Firefox/')[1].split(' ')[0];
+    const version = getVersion(versionStr);
+    return { type: 'Firefox', version };
   }
-  const m = Math.pow(10, Math.max(n1, n2));
-  return (num1 * m + num2 * m) / m;
-};
-// 减
-export const sub = (num1, num2) => {
-  let n1, n2;
-  try {
-    n1 = num1.toString().split('.')[1].length;
-  } catch (error) {
-    n1 = 0;
+  if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Edge') > -1) {
+    const versionStr = userAgent.split('Edge/')[1].split(' ')[0];
+    const version = getVersion(versionStr);
+    return { type: 'Edge', version };
   }
-  try {
-    n2 = num2.toString().split('.')[1].length;
-  } catch (error) {
-    n2 = 0;
+  if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Safari') > -1) {
+    const versionStr = userAgent.split('Chrome/')[1].split(' ')[0];
+    const version = getVersion(versionStr);
+    return { type: 'Chrome', version };
   }
-  const m = Math.pow(10, Math.max(n1, n2));
-  const n = n1 >= n2 ? n1 : n2;
-  return Number(((num1 * m - num2 * m) / m).toFixed(n));
-};
-// 乘
-export const multiplication = (num1, num2) => {
-  let m = 0;
-  const n1 = num1.toString();
-  const n2 = num2.toString();
-  try {
-    m += n1.split('.')[1].length;
-  } catch (error) {
-    throw new Error(error);
+  if (userAgent.indexOf('Trident') > -1 && userAgent.indexOf('compatible') > -1) {
+    if (userAgent.indexOf('MSIE 10.0') > -1) {
+      return { type: 'IE', version: 10.0 };
+    }
+    if (userAgent.indexOf('MSIE 9.0') > -1) {
+      return { type: 'IE', version: 9.0 };
+    }
   }
-  try {
-    m += n2.split('.')[1].length;
-  } catch (error) {
-    throw new Error(error);
+  if (userAgent.indexOf('Trident') > -1) {
+    return { type: 'IE', version: 11.0 };
   }
 
-  return (Number(n1.replace('.', '')) * Number(n2.replace('.', ''))) / Math.pow(10, m);
+  return { type: 'none', version: 0 };
 };
-// 除
-export const division = (num1, num2) => {
-  let n1, n2;
-  try {
-    n1 = num1.toString().split('.')[1].length;
-  } catch (error) {
-    n1 = 0;
-  }
-  try {
-    n2 = num2.toString().split('.')[1].length;
-  } catch (error) {
-    n2 = 0;
-  }
-  const r1 = Number(num1.toString().replace('.', ''));
-  const r2 = Number(num2.toString().replace('.', ''));
-  return (r1 / r2) * Math.pow(10, n2 - n1);
-};
+
+/**
+ * @description 异步加载高德地图
+ */
+export function loadMP() {
+  const mp = new Promise((resolve, reject) => {
+    let hasLoaded = document.getElementById('amap');
+    if (hasLoaded) {
+      resolve(AMap);
+      return;
+    }
+    window.init = function () {
+      resolve(AMap);
+    };
+    let script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://webapi.amap.com/maps?v=1.4.15&key=afab6449e9193d57d031a489545a7b9a&callback=init';
+    script.id = 'amap';
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+  return mp;
+}

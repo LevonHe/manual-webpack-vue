@@ -1,0 +1,14 @@
+# 忽略目录
+build/
+tests/
+node_modules/
+src/threeCompatible/build/
+src/threeCompatible/examples/jsm/controls/
+src/threeCompatible/examples/jsm/loaders/
+
+# node 覆盖率文件
+coverage/
+
+# 忽略文件
+**/*-min.js
+**/*.min.js

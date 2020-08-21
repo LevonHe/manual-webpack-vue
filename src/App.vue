@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view />
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -15,9 +15,16 @@ export default {
   },
   methods: {
     i18nHandle(val, oldVal) {
-      CookieService.setCookie('lang', val);
+      CookieService.setCookie('Business-Lang', val);
       document.querySelector('html').setAttribute('lang', val);
     },
+  },
+  mounted() {
+    // 找到加载动画的id，并删除
+    const $loadingEl = document.getElementById('fe-main__loading');
+    if ($loadingEl) {
+      document.body.removeChild($loadingEl);
+    }
   },
 };
 </script>
