@@ -36,4 +36,9 @@ export default [
     title: 'menu.Canvas',
     icon: 'el-icon-picture-outline-round',
   },
+  {
+    path: '/indexedDB',
+    title: 'menu.IndexedDB',
+    icon: 'fa fa-database',
+  },
 ];

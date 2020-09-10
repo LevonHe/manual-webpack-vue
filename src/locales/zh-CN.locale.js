@@ -39,6 +39,7 @@ module.exports = {
     Chart: 'E-charts',
     Three: 'Three.js',
     Canvas: '画布',
+    IndexedDB: 'IndexedDB',
   },
   user: {
     user: '用户',

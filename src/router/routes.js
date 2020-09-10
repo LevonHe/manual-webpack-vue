@@ -63,6 +63,15 @@ const frameIn = [
         },
         component: _import('business/canvas'),
       },
+      {
+        path: 'indexedDB',
+        name: 'indexedDB',
+        meta: {
+          auth: true,
+          title: 'menu.IndexedDB',
+        },
+        component: _import('business/indexedDB'),
+      },
       // 刷新页面 必须保留 勿删
       {
         path: 'refresh',
