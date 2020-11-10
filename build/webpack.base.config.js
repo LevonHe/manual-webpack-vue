@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const ESlintWebpackPlugin = require('eslint-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '../', dir);
@@ -94,6 +95,9 @@ module.exports = {
         ...require('../env'),
       },
     }),
+    // new ESlintWebpackPlugin({
+    //   formatter: require('eslint-friendly-formatter'),
+    // }),
     new VueLoaderPlugin(),
     new CopyWebpackPlugin({
       patterns: [

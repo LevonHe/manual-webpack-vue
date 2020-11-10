@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import store from '@/store/index.js';
+import store from '@/store/index';
 
 function checkArray(key) {
-  let arr = store.state.system.permission.permissionArr;
+  const arr = store.state.system.permission.permissionArr;
   if (arr.indexOf(key) > -1) {
     return true;
   }
@@ -12,9 +12,9 @@ function checkArray(key) {
 // 全局权限指令
 Vue.directive('permission', {
   inserted(el, binding) {
-    let permission = binding.value;
+    const permission = binding.value;
     if (permission) {
-      let hasPermission = checkArray(permission);
+      const hasPermission = checkArray(permission);
       if (!hasPermission) {
         el.parentNode && el.parentNode.removeChild(el);
       }

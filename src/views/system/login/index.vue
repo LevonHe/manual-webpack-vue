@@ -16,13 +16,7 @@
           </div>
           <div class="page-login--form" v-loading="loading">
             <el-card shadow="never">
-              <el-form
-                ref="loginForm"
-                label-position="top"
-                :rules="rules"
-                :model="formLogin"
-                size="default"
-              >
+              <el-form ref="loginForm" label-position="top" :rules="rules" :model="formLogin" size="default">
                 <el-form-item prop="username">
                   <el-input
                     type="text"
@@ -44,12 +38,9 @@
                     <i slot="prepend" class="el-icon-key"></i>
                   </el-input>
                 </el-form-item>
-                <el-button
-                  size="default"
-                  type="primary"
-                  @click="submit"
-                  class="button-login"
-                >{{ $t('common.login') }}</el-button>
+                <el-button size="default" type="primary" @click="submit" class="button-login">{{
+                  $t('common.login')
+                }}</el-button>
               </el-form>
             </el-card>
           </div>

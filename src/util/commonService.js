@@ -22,7 +22,7 @@ export const getFloat = (num, n) => {
   if (isNaN(result)) {
     return '';
   }
-  let total = n ? parseInt(n) : 0;
+  const total = n ? parseInt(n, 10) : 0;
   if (total <= 0) {
     return Math.round(result) + '';
   }
@@ -125,15 +125,15 @@ export const getBrowserType = () => {
  */
 export function loadMP() {
   const mp = new Promise((resolve, reject) => {
-    let hasLoaded = document.getElementById('amap');
+    const hasLoaded = document.getElementById('amap');
     if (hasLoaded) {
       resolve(AMap);
       return;
     }
-    window.init = function () {
+    window.init = function init() {
       resolve(AMap);
     };
-    let script = document.createElement('script');
+    const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = 'https://webapi.amap.com/maps?v=1.4.15&key=afab6449e9193d57d031a489545a7b9a&callback=init';
     script.id = 'amap';
@@ -141,4 +141,42 @@ export function loadMP() {
     document.head.appendChild(script);
   });
   return mp;
+}
+
+// 数据类型判断
+export function toRawType(value) {
+  return Object.prototype.toString.call(value).slice(8, -1);
+}
+
+// 浅拷贝
+function isObject(obj) {
+  return obj !== null && typeof obj === 'object';
+}
+export function looseEqual(a, b) {
+  if (a === b) {
+    return true;
+  }
+  const isObjectA = isObject(a);
+  const isObjectB = isObject(b);
+  if (isObjectA && isObjectB) {
+    try {
+      const isArrayA = Array.isArray(a);
+      const isArrayB = Array.isArray(b);
+      if (isArrayA && isArrayB) {
+        return a.length === b.length && a.every((e, i) => looseEqual(e, b[i]));
+      }
+      if (!isArrayA && !isArrayB) {
+        const keysA = Object.keys(a);
+        const keysB = Object.keys(b);
+        return keysA.length === keysB.length && keysA.every((key) => looseEqual(a[key], b[key]));
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b);
+  } else {
+    return false;
+  }
 }

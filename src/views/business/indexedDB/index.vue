@@ -21,7 +21,7 @@
         <el-button size="medium" type="primary" @click="handleAdd">添加</el-button>
       </div>
     </div>
-    <el-table :data="list" style="width: 100%">
+    <el-table :data="list" style="width: 100%;">
       <el-table-column prop="id" label="ID"></el-table-column>
       <el-table-column prop="itemKey" label="Key"></el-table-column>
       <el-table-column prop="itemValue" label="Value"></el-table-column>
@@ -69,7 +69,7 @@ export default {
         });
     },
     handleAdd: _.debounce(
-      function () {
+      function handleAdd() {
         const winData = {
           oper: 'create',
         };
@@ -79,7 +79,7 @@ export default {
       { leading: true, trailing: false }
     ),
     handleEdit: _.debounce(
-      function (item) {
+      function handleEdit(item) {
         this.getItemById(item.id)
           .then((res) => {
             if (!res || !res.id) {
@@ -99,7 +99,7 @@ export default {
       { leading: true, trailing: false }
     ),
     handleDelete: _.debounce(
-      function (item) {
+      function handleDelete(item) {
         const winData = {
           list: [_.cloneDeep(item)],
           text: {

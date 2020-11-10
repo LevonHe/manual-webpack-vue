@@ -44,13 +44,13 @@ export default {
   },
   watch: {
     modelName: {
-      handler: function(val) {
+      handler(val) {
         this.loadModel(val);
       },
       immediate: true,
     },
     asideCollapse: {
-      handler: function(val) {
+      handler(val) {
         this.onWindowResize();
       },
     },
@@ -85,7 +85,7 @@ export default {
       OBJ_READY: 'business/three/OBJ_READY',
     }),
     onWindowResize: _.debounce(
-      function() {
+      function onWindowResize() {
         this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
@@ -192,7 +192,7 @@ export default {
       let scrollLeft = el.scrollLeft;
       let scrollTop = el.scrollTop;
       if (el.offsetParent && el.offsetParent.tagName !== pname) {
-        let p = this.getRootOffset(el.offsetParent, pname);
+        const p = this.getRootOffset(el.offsetParent, pname);
         offsetLeft += p[0];
         offsetTop += p[1];
         scrollLeft += p[2];

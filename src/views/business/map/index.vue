@@ -7,6 +7,7 @@
 <script>
 import { loadMP } from '@/util/commonService';
 import CustomCreateHeader from '@/components/customCreateHeader/index.vue';
+
 export default {
   name: 'myMap',
   components: {

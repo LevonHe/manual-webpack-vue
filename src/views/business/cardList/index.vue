@@ -55,6 +55,7 @@
 <script>
 import StatusCard from '@/components/status-card/index.vue';
 import CustomCreateHeader from '@/components/customCreateHeader/index.vue';
+
 export default {
   name: 'cardList',
   components: {

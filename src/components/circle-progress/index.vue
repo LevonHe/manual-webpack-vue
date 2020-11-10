@@ -24,7 +24,7 @@ export default {
   },
   watch: {
     percent: {
-      handler: function(newVal) {
+      handler(newVal) {
         this.draw(newVal);
       },
     },

@@ -10,6 +10,7 @@
 import * as _ from 'lodash';
 import CustomCreateHeader from '@/components/customCreateHeader/index.vue';
 import CircleProgress from '@/components/circle-progress/index.vue';
+
 export default {
   name: 'myCanvas',
   components: {

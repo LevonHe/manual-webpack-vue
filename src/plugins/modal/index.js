@@ -19,7 +19,15 @@ export default {
         if (component) {
           const Modal = Vue.extend(component);
           $vm = new Modal();
-          $vm.options = { ...options, title, component, winData, width, confirm, cancel };
+          $vm.options = {
+            ...options,
+            title,
+            component,
+            winData,
+            width,
+            confirm,
+            cancel,
+          };
           $el = $vm.$mount().$el;
         }
         $el && document.body.appendChild($el);

@@ -9,7 +9,7 @@ export default {
   },
   watch: {
     '$router.app.$route': {
-      handler: function() {
+      handler: function handler() {
         this.$modal.hide();
         this.visible = false;
       },

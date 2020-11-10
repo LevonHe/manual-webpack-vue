@@ -53,6 +53,7 @@
 <script>
 import * as _ from 'lodash';
 import CustomCreateHeader from '@/components/customCreateHeader/index.vue';
+
 export default {
   name: 'user',
   components: {
@@ -137,7 +138,7 @@ export default {
       });
     },
     handleEdit: _.debounce(
-      function(id) {
+      function handleEdit(id) {
         if (!id) return;
         this.source = _.cloneDeep(this.source).map((item) => {
           if (item.id === id) {
@@ -154,7 +155,7 @@ export default {
       { leading: true, trailing: false }
     ),
     handleDelete: _.debounce(
-      function(id) {
+      function handleDelete(id) {
         this.source = this.source.filter((item) => item.id !== id);
         this.processSourceCache();
       },
@@ -162,7 +163,7 @@ export default {
       { leading: true, trailing: false }
     ),
     handleSave: _.debounce(
-      function(row) {
+      function handleSave(row) {
         this.source = this.source.map((item) => {
           if (item.id === row.id) {
             return {
@@ -179,7 +180,7 @@ export default {
       { leading: true, trailing: false }
     ),
     handleCancel: _.debounce(
-      function(id) {
+      function handleCancel(id) {
         _.cloneDeep(this.sourceCache).every((t) => {
           if (t.id === id) {
             this.source = _.cloneDeep(this.source).map((s) => {

@@ -6,12 +6,7 @@
       alt="logo"
       class="fe-aside-logo-img animated fadeInRight"
     />
-    <img
-      v-if="!asideCollapse"
-      src="/statics/logo_white.png"
-      alt="logo"
-      class="fe-aside-logo-img animated fadeInLeft"
-    />
+    <img v-if="!asideCollapse" src="/statics/logo_white.png" alt="logo" class="fe-aside-logo-img animated fadeInLeft" />
   </div>
 </template>
 

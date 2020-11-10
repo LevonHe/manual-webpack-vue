@@ -52,6 +52,7 @@
 import CustomCreateHeader from '@/components/customCreateHeader/index.vue';
 import ValidTable from '@/components/valid-table/table.vue';
 import ValidInput from '@/components/valid-table/input.vue';
+
 export default {
   name: 'role',
   components: {
@@ -70,7 +71,7 @@ export default {
           trigger: 'blur',
         },
         {
-          validator: function(rule, value, callback) {
+          validator(rule, value, callback) {
             const keyArr = _this.source.map((i) => i.key);
             if (keyArr.indexOf(value) !== keyArr.lastIndexOf(value)) {
               return callback(new Error(_this.$t('tableValid.invalid.keyRepeated')));

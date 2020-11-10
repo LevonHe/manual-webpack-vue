@@ -17,11 +17,11 @@ service.interceptors.request.use(
   (config) => {
     if (config.url.indexOf('login') === -1) {
       const token = CookieService.getCookie('Business-Token');
-      config.headers['Authorization'] = token;
+      config.headers.Authorization = token;
     }
     return config;
   },
-  (err) => {
+  (error) => {
     console.log(error);
     return Promise.reject(error);
   }
@@ -34,17 +34,16 @@ service.interceptors.response.use(
     const { code } = dataAxios;
     if (code === undefined) {
       return dataAxios;
-    } else {
-      switch (code) {
-        case 0:
-          return dataAxios.data;
-        case 'xxx':
-          console.log(`[ code: xxx ] ${dataAxios.msg}: ${response.config.url}`);
-          break;
-        default:
-          console.log(`${dataAxios.msg}: ${response.config.url}`);
-          break;
-      }
+    }
+    switch (code) {
+      case 0:
+        return dataAxios.data;
+      case 'xxx':
+        console.log(`[ code: xxx ] ${dataAxios.msg}: ${response.config.url}`);
+        break;
+      default:
+        console.log(`${dataAxios.msg}: ${response.config.url}`);
+        break;
     }
   },
   (error) => {

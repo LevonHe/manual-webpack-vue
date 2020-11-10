@@ -9,9 +9,9 @@ import 'regenerator-runtime/runtime';
 import Vue from 'vue';
 
 /** plugin */
-import modal from '@/plugins/modal/index.js';
-import msg from '@/plugins/msg/index.js';
-import api from '@/api/index.js';
+import modal from '@/plugins/modal/index';
+import msg from '@/plugins/msg/index';
+import api from '@/api/index';
 
 /** i18n */
 import i18n from '@/i18n';

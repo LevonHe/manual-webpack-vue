@@ -5,6 +5,7 @@
 </template>
 <script>
 import CookieService from '@/util/CookieService';
+
 export default {
   name: 'app',
   watch: {

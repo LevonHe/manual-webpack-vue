@@ -114,7 +114,7 @@ export default {
       this.$emit('setScroll', this.scroll);
 
       if (this.listenScroll) {
-        let _this = this;
+        const _this = this;
         this.scroll.on('scroll', (pos) => {
           _this.$emit('scroll', pos);
         });
@@ -122,7 +122,7 @@ export default {
 
       // 上滑刷新
       if (this.pullup) {
-        let _this = this;
+        const _this = this;
         this.scroll.on('scrollEnd', () => {
           if (_this.scroll.y <= this.scroll.maxScrollY + 50) {
             _this.$emit('scrollToEnd');
@@ -132,7 +132,7 @@ export default {
 
       // 下拉刷新
       if (this.pulldown) {
-        let _this = this;
+        const _this = this;
         this.scroll.on('touchEnd', (pos) => {
           if (pos.y > 50) {
             _this.$emit('pulldown');
@@ -141,7 +141,7 @@ export default {
       }
 
       if (this.beforeScroll) {
-        let _this = this;
+        const _this = this;
         this.scroll.on('beforeScrollStart', () => {
           _this.$emit('beforeScroll');
         });

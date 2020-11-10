@@ -18,6 +18,7 @@
 <script>
 import Schema from 'async-validator';
 import emitter from '@/util/emitter';
+
 export default {
   name: 'valid-input',
   // inject: ['$$parentVm'],
@@ -104,17 +105,17 @@ export default {
       const rules = this.getRules();
       return rules.filter((r) => !r.trigger || r.trigger.indexOf(trigger) !== -1);
     },
-    validate(trigger, callback = function() {}) {
+    validate(trigger, callback = function cb() {}) {
       const rules = this.getFilteredRules(trigger);
       if (!rules || rules.length === 0) {
         return true;
       }
       this.validateState = 'validating';
-      let descriptor = {
+      const descriptor = {
         [this.prop]: rules,
       };
       const schema = new Schema(descriptor);
-      let model = {
+      const model = {
         [this.prop]: this.currentValue,
       };
       schema.validate(model, { firstFields: true }, (errors) => {

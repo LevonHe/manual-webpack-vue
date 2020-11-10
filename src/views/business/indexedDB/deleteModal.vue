@@ -14,7 +14,7 @@
           <span>{{ tip }}</span>
         </div>
         <div>
-          <el-table :data="list" style="width: 100%">
+          <el-table :data="list" style="width: 100%;">
             <el-table-column prop="id" label="ID"></el-table-column>
             <el-table-column prop="itemKey" label="Key"></el-table-column>
             <el-table-column prop="itemValue" label="Value"></el-table-column>
@@ -31,7 +31,7 @@
 <script>
 import { mapActions } from 'vuex';
 import * as _ from 'lodash';
-import modalMixin from '@/plugins/modal/mixin.js';
+import modalMixin from '@/plugins/modal/mixin';
 
 export default {
   mixins: [modalMixin],

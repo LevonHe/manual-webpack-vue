@@ -32,7 +32,7 @@ export default {
     validate(callback) {
       this.execValid(this.inputs, callback);
     },
-    validateField(field, callback = function() {}) {
+    validateField(field, callback = function cb() {}) {
       const validateInputs = this.inputs.filter((i) => field.indexOf(i.prop) !== -1);
       this.execValid(validateInputs, callback);
     },
@@ -48,7 +48,8 @@ export default {
             if (errors) {
               valid = false;
             }
-            if (++count === inputs.length) {
+            count += 1;
+            if (count === inputs.length) {
               resolve(valid);
               if (typeof callback === 'function') {
                 callback(valid);

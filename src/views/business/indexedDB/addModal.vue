@@ -26,12 +26,7 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button size="medium" :disabled="loading" @click="handleCancel">取消</el-button>
-        <el-button
-          size="medium"
-          :disabled="loading"
-          type="primary"
-          @click="submitForm('ruleForm')"
-        >确定</el-button>
+        <el-button size="medium" :disabled="loading" type="primary" @click="submitForm('ruleForm')">确定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -39,7 +34,7 @@
 <script>
 import { mapActions } from 'vuex';
 import * as _ from 'lodash';
-import modalMixin from '@/plugins/modal/mixin.js';
+import modalMixin from '@/plugins/modal/mixin';
 
 export default {
   mixins: [modalMixin],
@@ -69,7 +64,7 @@ export default {
   methods: {
     ...mapActions('business/main', ['createItem', 'updateItem']),
     submitForm: _.debounce(
-      function (formName) {
+      function submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (!valid) {
             return;

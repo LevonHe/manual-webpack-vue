@@ -8,9 +8,8 @@ export const AccountLogin = (data) =>
     data,
   });
 
-export const getUserRoles = () => {
-  return request({
+export const getUserRoles = () =>
+  request({
     url: '/api/business/user',
     method: 'GET',
   });
-};

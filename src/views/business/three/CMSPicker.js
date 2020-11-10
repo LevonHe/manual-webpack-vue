@@ -7,6 +7,7 @@ export default class CMSPicker {
     this.pickedObjectSavedColor = 0;
     this.pickedObjectSavedColorArray = [];
   }
+
   pick(normalizedPosition, scene, camera, logger, logPosition) {
     if (this.pickedObject) {
       if (Object.prototype.toString.call(this.pickedObject.material) === '[object Array]') {
